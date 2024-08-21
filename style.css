@@ -33,11 +33,21 @@ body {
 
 .calculator .display {
     background-color: grey;
+    display: flex;
+    justify-content: end;
+}
+
+.display p {
+    font-size: 40px;
+    margin: auto 16px auto auto;
 }
 
 .line div {
     flex: 1 1 calc(100%/4);
     background-color: bisque;
+    font-size: 48px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .line .backspace {
