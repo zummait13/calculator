@@ -14,9 +14,12 @@ function multiply(a, b) {
     return +a * +b;
 }
 
-let numb1 = '';
-let numb2 = '';
-let operator = '';
+function roundNumb (numb) {
+    const BILLION = 1000000000;
+    if (numb>BILLION) numb = numb.toExponential(4);
+    else +numb.toFixed(8);
+    return numb;
+}
 
 function operate(numb1, numb2, operator) {
     let result = 0;
@@ -26,13 +29,16 @@ function operate(numb1, numb2, operator) {
         case '*': result = multiply(numb1, numb2); break;
         case '/': result = divide(numb1, numb2); break;
     }
-    return result.toFixed(5);
+    return roundNumb(result);
 }
+
+let numb1 = '';
+let numb2 = '';
+let operator = '';
+let textDisplayStor = '';
 
 const calculator = document.querySelector(".calculator");
 const textDisplayElem = document.querySelector(".display p");
-
-let textDisplayStor = '';
 
 calculator.addEventListener("click", e => {
     let target = e.target;
@@ -46,7 +52,7 @@ calculator.addEventListener("click", e => {
             operator = '';
             textDisplayStor = '';
         }
-
+        
         else if (numb1 == '') {
             if (target.matches(".oper")) alert("Type number");
             else if (target.matches(".numb")) {
